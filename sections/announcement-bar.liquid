@@ -4,7 +4,7 @@
       <div class="announce-bar" style="background: {{ block.settings.background_color }};" aria-label="{{ 'sections.header.announcement' | t }}">
         {%- if block.settings.text != blank -%}
           {%- if block.settings.link != blank -%}
-            <a style="color: {{ block.settings.announcement_text_color }};" href="{{ block.settings.link }}">
+            <a style="color: {{ block.settings.announcement_text_color }}; text-decoration: none;" href="{{ block.settings.link }}">
           {%- endif -%}
               {{ block.settings.text | escape }}
           {%- if block.settings.link != blank -%}
