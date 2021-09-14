@@ -1,6 +1,6 @@
 {{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
-<p>hero one</p>
-<div class="hero hero1 hero1--aligned-{{ section.settings.info_alignment }}">
+
+<div class="hero hero1 hero1--aligned-{{ section.settings.info_alignment }} hero1--{{ section.settings.hero_height }}">
   {%- if section.settings.image != blank -%}
   <img
     srcset="{%- if section.settings.image.width >= 165 -%}{{ section.settings.image | img_url: '165x' }} 165w,{%- endif -%}
@@ -22,12 +22,12 @@
 {%- endif -%}
 {% assign opacity = section.settings.opacity | divided_by: 100.00 %}
 
-  <div class="hero1__content-container" style="background-color:{{section.settings.background | color_modify: 'alpha', opacity }};">
+  <div class="hero1__content-container" style="background-color:{{ section.settings.background | color_modify: 'alpha', opacity }};">
      <div class="hero1__info">
       {%- for block in section.blocks -%}
           {% case block.type %}
             {%- when 'heading' -%}
-            <h1 class="hero1__title">{{ block.settings.title }}</h1>
+            <h1 class="hero1__title hero1__title--{{- block.settings.font_size -}}">{{ block.settings.title }}</h1>
 
             {%- when 'text' -%}
               <div class="hero1__paragraph" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
@@ -114,6 +114,29 @@
 	"name": "Hero One",
 	"class": "spaced-section spaced-section--full-width",
 	"settings": [{
+			"type": "select",
+			"id": "hero_height",
+			"options": [{
+					"value": "25vh",
+					"label": "25%"
+				},
+				{
+					"value": "50vh",
+					"label": "50%"
+				},
+				{
+					"value": "75vh",
+					"label": "75%"
+				},
+				{
+					"value": "100vh",
+					"label": "100%"
+				}
+			],
+			"default": "100vh",
+			"label": "Height"
+		},
+		{
 			"type": "image_picker",
 			"id": "image",
 			"label": "t:sections.image-with-text.settings.image.label"
@@ -130,21 +153,21 @@
 			"label": "Subtext",
 			"default": " I<!-- -->'<!-- -->m baby kogi cardigan kitsch hammock banjo. Typewriter viral man braid hot chicken, farm-to-table fashion axe intelligentsia lomo green juice ramps irony succulents. "
 		},
-    {
-      "type": "color",
-      "id": "background",
-      "label": "Background",
-      "default": "#000000"
-    },
-    {
-      "type": "range",
-      "id": "opacity",
-      "min": 0,
-      "max": 100,
-      "step": 1,
-      "label": "Opacity",
-      "default": 50
-    },
+		{
+			"type": "color",
+			"id": "background",
+			"label": "Background",
+			"default": "#000000"
+		},
+		{
+			"type": "range",
+			"id": "opacity",
+			"min": 0,
+			"max": 100,
+			"step": 1,
+			"label": "Opacity",
+			"default": 50
+		},
 		{
 			"type": "select",
 			"id": "info_alignment",
@@ -170,11 +193,36 @@
 			"name": "name",
 			"limit": 5,
 			"settings": [{
-				"type": "text",
-				"id": "title",
-        "label": "Title",
-				"default": "Title"
-			}]
+					"type": "text",
+					"id": "title",
+					"label": "Title",
+					"default": "Title"
+				},
+				{
+					"type": "select",
+					"id": "font_size",
+					"options": [{
+							"value": "sm",
+							"label": "Small"
+						},
+						{
+							"value": "md",
+							"label": "Medium"
+						},
+						{
+							"value": "lg",
+							"label": "Large"
+						},
+						{
+							"value": "xl",
+							"label": "Extra Large"
+						}
+					],
+					"default": "md",
+					"label": "Font Size"
+				}
+
+			]
 		},
 		{
 			"type": "text",

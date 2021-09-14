@@ -1,7 +1,6 @@
 {{ 'component-image-with-text.css' | asset_url | stylesheet_tag }}
 
-<p>hero two</p>
-<div class="hero hero2">
+<div class="hero hero2 hero1--{{ section.settings.hero_height }}">
   <div class="hero2__collection1">
      {%- if section.settings.image != blank -%}
       <img
@@ -77,6 +76,28 @@
 	"name": "Hero Two",
 	"class": "spaced-section spaced-section--full-width",
 	"settings": [{
+			"type": "select",
+			"id": "hero_height",
+			"options": [{
+					"value": "25vh",
+					"label": "25%"
+				},
+				{
+					"value": "50vh",
+					"label": "50%"
+				},
+				{
+					"value": "75vh",
+					"label": "75%"
+				},
+				{
+					"value": "100vh",
+					"label": "100%"
+				}
+			],
+			"default": "100vh",
+			"label": "Height"
+		}, {
 			"type": "image_picker",
 			"id": "image",
 			"label": "t:sections.image-with-text.settings.image.label"
