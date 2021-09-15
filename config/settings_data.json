@@ -17,8 +17,6 @@
             "type": "announcement",
             "settings": {
               "text": "50% Sale On July 4th 2028",
-              "announcement_text_color": "#ffffff",
-              "background_color": "#605e7d",
               "link": "shopify:\/\/collections\/adidas"
             }
           }
